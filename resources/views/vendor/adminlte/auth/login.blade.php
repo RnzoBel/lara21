@@ -30,6 +30,11 @@
         {{ csrf_field() }}
 
         {{-- Email field --}}
+        @if($errors->has('usu_cntcuit') ? 'is-invalid' : '')
+        <div class="invalid-feedback">
+            <strong>{{ $errors->has('usu_cntcuit') }}</strong>
+        </div>
+    @endif
         <div class="input-group mb-3">
             <input type="text" name="usu_cntcuit" placeholder="Ingrese CUIT" class="form-control {{ $errors->has('usu_cntcuit') ? 'is-invalid' : '' }}" 
                  autofocus>

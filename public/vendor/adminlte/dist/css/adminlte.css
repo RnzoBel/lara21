@@ -11716,6 +11716,8 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 
 [class*='sidebar-dark'] .brand-link {
   border-bottom: 1px solid #4b545c;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: white !important;
   
 }
 
