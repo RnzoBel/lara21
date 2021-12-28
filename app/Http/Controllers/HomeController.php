@@ -6,8 +6,12 @@ use App\UsuWeb;
 use App\Contribu;
 use App\Contribuyente;
 use App\UsuApps;
+use App\Noticias;
+use Illuminate\Auth;
+use App\Notifications\Notifications;
 use App\Permxaplicacion;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 class HomeController extends Controller
@@ -58,13 +62,23 @@ class HomeController extends Controller
     }
 
     public function showsapp(){
-        $aplicaciones = UsuApps::paginate(4);
-        //return dd($aplicaciones);
+        $CntCuit = session()->get('idContribu');
+        $users = Usuweb::where('Usu_CntCuit', $CntCuit)->first();
+            if (is_null($users->usu_sglevel) || ($users->usu_sglevel < 9)){
+                $aplicaciones = UsuApps::where('AppEstado', 1)->get();
+            } else{ 
+                $aplicaciones = UsuApps::all();
+        }
+        //return $aplicaciones;
+    
+
+       
         return view('apps', compact('aplicaciones'));
     }
 
     public function ordenanzas()
     {
+        
         return redirect::to('https://resistencia.gob.ar/ordenanzas-municipales/');
     }
 
@@ -108,16 +122,17 @@ class HomeController extends Controller
         //return view('home', compact('UsuWebs'));
     }
 
-    public function showapps()
+    /*public function showapps()
     {
-        //return view('home');
+       $users = DB::table('CONTRIBU')->where('CntCuit', '20336144087')->first();
+        return dd($users);
        $aplicaciones = UsuApps::all();
        return dd($aplicaciones);
       // $users = DB::table('CONTRIBU')->select('CntCuit');
        //$users = DB::table('CONTRIBU')->where('CntCuit', '20336144087')->first();
        // return dd($Contribuyente->getContribuyente->cntnombre);
         //return view('home', compact('UsuWebs'));
-    }
+    }*/
 
     public function phones()
     {

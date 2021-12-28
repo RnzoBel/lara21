@@ -28,7 +28,7 @@
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="text" name="usu_cntcuit" class="form-control {{ $errors->has('usu_cntcuit') ? 'is-invalid' : '' }}"
-                   value="{{ old('email') }}" placeholder="Ingrese CUIT" autofocus>
+                   value="{{ old('usu_cntcuit') }}" placeholder="Ingrese CUIT" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
