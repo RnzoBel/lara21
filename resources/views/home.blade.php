@@ -32,21 +32,40 @@
         </div>
             
         
-        <div class="card-body">
-            <ul class="aplicativos">
+        <div class="card-body"> 
+
+           
+
+
+
+                @if ($permisos->count() > 0)
             @foreach ($permisos as $item)
-                <li class="col-4"> 
-                    
+            <a target="_blank" href="{{route('auth.setTrabajaServyApp', [$item->idaplicacion])}}" class="card-link">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5 class="card-title">{{$item->getAplicacion->appnombre}}</h5><br>
+                        <img class="img-responsive" src="{{'img/'.$item->idaplicacion.'.png'}}" width="90" height="90" alt="Lanzar aplicacion Municipal"><br>
+                    </div>
+                </div>
+              </div>
+            </a>
+
+                <div class="col-md-4"> 
                     <a target="_blank" href="{{route('auth.setTrabajaServyApp', [$item->idaplicacion])}}" class="urlapps">
                         <span class="img-container">
-                            
-                            <img class="ImgLogos" src="{{'img/'.$item->idaplicacion.'.png'}}" alt="Lanzar aplicacion Municipal">
+                            <!--LA IMAGEN DEBE ESTAR GUARDADA CON EL ID COMO NOMBRE EN LA CARPETA IMG -->
+                           <img class="img-responsive" src="{{'img/'.$item->idaplicacion.'.png'}}" width="90" height="90" alt="Lanzar aplicacion Municipal">
+                           
                         </span>
-                        <span><p>{{$item->getAplicacion->appnombre}}</p></span>
+                        <p>{{$item->getAplicacion->appnombre}}</p>   
                     </a>  
-                </li>
+                </div>
             @endforeach
-        </ul>
+            @else
+            <span>no tiene aplicativos agregados</span>
+            @endif
+        
         </div>
     </div>
 </div>
@@ -64,7 +83,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 @stop
 
 @section('js')
