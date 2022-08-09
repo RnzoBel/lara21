@@ -146,7 +146,7 @@ class HomeController extends Controller
             
             $data = [
                 'idContribu' => session('idContribu'),
-                'Contribuyente' => session('Contribuyente'),
+                //'Contribuyente' => session('Contribuyente'),
                 'idAplicacion' => $idAplicacion, 
                 'idSesion' => session()->getId()
             ];

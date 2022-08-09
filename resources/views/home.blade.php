@@ -34,10 +34,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="row">
                     @if ($permisos->count() > 0)
                         @foreach ($permisos as $item)
-                            <a target="_blank" href="{{ route('auth.setTrabajaServyApp', [$item->idaplicacion]) }}"
-                                class="card-link">
+                        <div class="col-md-4">
+                            <a target="_blank" href="{{ route('auth.setTrabajaServyApp', [$item->idaplicacion]) }}" class="card-link">
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
                                         <div class="text-center">
@@ -50,10 +51,13 @@
                                     </div>
                                 </div>
                             </a>
+                        </div>
+                    
                         @endforeach
                     @else
                         <span>no tiene aplicativos agregados</span>
                     @endif
+                </div>
                 </div>
             </div>
         </div>
